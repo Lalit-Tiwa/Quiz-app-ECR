@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Quiz Time</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+        <div class="container" id="startScreen">
+            <!-- Banner -->
+            <div class="banner">
+                <span>Quiz Time</span>
+                <div class="banner-tail"></div>
+            </div>
+
+            <!-- Button -->
+            <button class="start-btn" id="startBtn">
+                Start Now <span>›››</span>
+            </button>
+
+        </div>
+
+        <div class="quizcontainer" id="quizScreen">
+            <div class="banner1">
+                <span>Quiz Time</span>
+                <div class="banner-tail1"></div>
+            </div>
+            <img class="sound-img" src="./images/🦆 icon _Volume Up_.png" alt="">
+            <h2 class="score"><span>00/00</span></h2>
+
+            <div class="question-container">
+                <p class="question">Inside which HTML element do we put the JavaScript? </p>
+            </div>
+            <h2 class="timer"><span>00:30</span></h2>
+
+            <div class="options-container">
+                <div class="options">
+                    <button class="option">
+                        &lt;js&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;scripting&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;javascript&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option" data-correct="true">
+                        &lt;script&gt;
+                        <span class="correct-status">✔</span>
+                    </button>
+                </div>
+                <div class="quiz-footer">
+                    <p class="foo">Made with ❤️ by Lalit Tiwari</p>
+                    <a href="#" id="nextBtn" class="next-btn">Next</a>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!--2nd question-->
+
+        <div class="quizcontainer" id="quizScreen2">
+            <div class="banner1">
+                <span>Quiz Time</span>
+                <div class="banner-tail1"></div>
+            </div>
+            <img class="sound-img" src="/Quiz-app\images\🦆 icon _Volume Up_.png" alt="">
+            <h2 class="score"><span>00/00</span></h2>
+
+            <div class="question-container">
+                <p class="question">Which HTML attribute is used to define inline styles? </p>
+            </div>
+            <h2 class="timer"><span>00:30</span></h2>
+
+            <div class="options-container">
+                <div class="options">
+                    <button class="option">
+                        &lt;styles&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option" data-correct="true">
+                        &lt;style&gt;
+                        <span class="correct-status">✔</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;class&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;font&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+                <div class="quiz-footer">
+                    <p class="foo">Made with ❤️ by Lalit Tiwari</p>
+                    <a href="#" id="nextBtn2" class="next-btn">Next</a>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!--3rd question-->
+
+        <div class="quizcontainer" id="quizScreen3">
+            <div class="banner1">
+                <span>Quiz Time</span>
+                <div class="banner-tail1"></div>
+            </div>
+            <img class="sound-img" src="/Quiz-app\images\🦆 icon _Volume Up_.png" alt="">
+            <h2 class="score"><span>00/00</span></h2>
+
+            <div class="question-container">
+                <p class="question">Inside which HTML element do we put the CSS? </p>
+            </div>
+            <h2 class="timer"><span>00:30</span></h2>
+
+            <div class="options-container">
+                <div class="options">
+                    <button class="option">
+                        &lt;Font&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;id&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;class&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option" data-correct="true">
+                        &lt;style&gt;
+                        <span class="correct-status">✔</span>
+                    </button>
+                </div>
+                <div class="quiz-footer">
+                    <p class="foo">Made with ❤️ by Lalit Tiwari</p>
+                    <a href="#" id="nextBtn3" class="next-btn">Next</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--4th question-->
+
+        <div class="quizcontainer" id="quizScreen4">
+            <div class="banner1">
+                <span>Quiz Time</span>
+                <div class="banner-tail1"></div>
+            </div>
+            <img class="sound-img" src="/Quiz-app\images\🦆 icon _Volume Up_.png" alt="">
+            <h2 class="score"><span>00/00</span></h2>
+
+            <div class="question-container">
+                <p class="question">Which HTML tag is used to create a hyperlink? </p>
+            </div>
+            <h2 class="timer"><span>00:30</span></h2>
+
+            <div class="options-container">
+                <div class="options">
+                    <button class="option">
+                        &lt;link&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;href&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option" data-correct="true">
+                        &lt;a&gt;
+                        <span class="correct-status">✔</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        &lt;url&gt;
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+                <div class="quiz-footer">
+                    <p class="foo">Made with ❤️ by Lalit Tiwari</p>
+                    <a href="#" id="nextBtn4" class="next-btn">Next</a>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!--Question 5-->
+
+        <div class="quizcontainer" id="quizScreen5">
+            <div class="banner1">
+                <span>Quiz Time</span>
+                <div class="banner-tail1"></div>
+            </div>
+            <img class="sound-img" src="/Quiz-app\images\🦆 icon _Volume Up_.png" alt="">
+            <h2 class="score"><span>00/00</span></h2>
+
+            <div class="question-container">
+                <p class="question">Which method is used to fetch data from an API? </p>
+            </div>
+            <h2 class="timer"><span>00:30</span></h2>
+
+            <div class="options-container">
+                <div class="options">
+                    <button class="option">
+                        <!-- &lt;link&gt; -->
+                        getData()
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        <!-- &lt;href&gt; -->
+                        axios()
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option" data-correct="true">
+                        <!-- &lt;a&gt; -->
+                        fetch()
+                        <span class="correct-status">✔</span>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <button class="option">
+                        <!-- &lt;url&gt; -->
+                        request()
+                        <span class="status">You chose ✖</span>
+                    </button>
+                </div>
+                <div class="quiz-footer">
+                    <p class="foo">Made with ❤️ by Lalit Tiwari</p>
+                    <a href="#" id="nextBtn5" class="next-btn">Next</a>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!--Result Container-->
+
+        <div class="result-container" id="resultScreen">
+            <div class="banner2">
+                <span>Quiz Time</span>
+            </div>
+            <div class="result">
+                <span>Result</span>
+            </div>
+
+            <div class="progress-wrapper">
+                <div class="progress-bar">
+                    <div class="progress-green">
+                        <span class="dot left"></span>
+                        <span class="label">00%</span>
+                    </div>
+                    <div class="progress-red">
+                        <span class="dot right"></span>
+                        <span class="label">00%</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <h2 class="score-result"><span>00/00</span></h2>
+            <p class="para">“Keep learning!”</p>
+
+            <button class="retry-btn">
+                <span>›››</span> Retry
+            </button>
+
+            <p class="share">Share your score:</p>
+            <div class="icon-container">
+                <a href="https://www.linkedin.com/in/lalit-mohan-tiwari-541955155" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/YOUR_USERNAME" target="_blank">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/YOUR_USERNAME" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+            </div>
+            <p class="foo">Made with ❤️ by Lalit Tiwari</p>
+
+
+        </div>
+
+
+
+
+
+</body>
+
+</html>
