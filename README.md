@@ -65,7 +65,7 @@ Using eksctl (Production Ready with managed node group):
 ```bash
 eksctl create cluster \
   --name quiz-cluster \
-  --region ap-south-1 \
+  --region us-east-1 \
   --nodegroup-name quiz-nodes \
   --node-type t3.medium \
   --nodes 2 \
@@ -110,33 +110,44 @@ docker push <ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/quiz-app:latest
 🚀 STEP 4: Kubernetes Deployment YAML (Production-Level)
 📁 deployment.yaml inside k8s folder.
 
-kubectl apply -f deployment.yaml
+kubectl apply -f deployment.yml
 
 5️⃣ Create Service (inside k8s folder.)
-kubectl apply -f service.yaml
+kubectl apply -f service.yml
 
-🌐 Setup AWS Load Balancer Controller
 6️⃣ Create IAM Policy
 
 Download official policy:
 curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
+Step 2 — Verify It Contains Required Permission
+cat iam_policy.json | grep DescribeListenerAttributes
+
+
+
 Create policy:
 aws iam create-policy \
-  --policy-name AWSLoadBalancerControllerIAMPolicyLatest \
+  --policy-name AWSLoadBalancerControllerIAMPolicy \
   --policy-document file://iam_policy.json
 
+OIDC Attached:
+  eksctl utils associate-iam-oidc-provider \
+  --region us-east-1 \
+  --cluster quiz-cluster \
+  --approve
 
-7️⃣ Attach Policy to IAM Role
-
-Attach to role:
-
-eksctl-quiz-cluster-addon-iamserviceaccount-k-Role1-UmbwlVYTNTVk
+Verify OIDC is Attached:
+  aws iam list-open-id-connect-providers
 
 
-aws iam attach-role-policy \
-  --role-name eksctl-quiz-cluster-addon-iamserviceaccount-k-Role1-UmbwlVYTNTVk \
-  --policy-arn arn:aws:iam::<account-id>:policy/AWSLoadBalancerControllerIAMPolicyLatest
+STEP 4: Create IAM Service Account (IRSA)
+eksctl create iamserviceaccount \
+  --cluster quiz-cluster \
+  --namespace kube-system \
+  --name aws-load-balancer-controller \
+  --attach-policy-arn arn:aws:iam::<account-id>:policy/AWSLoadBalancerControllerIAMPolicy \
+  --approve
+
 
 8️⃣ Install AWS Load Balancer Controller
 
@@ -157,12 +168,12 @@ kubectl get pods -n kube-system
 🌍 Create Ingress (ALB)
 9️⃣ Ingress YAML (inside k8s folder)
 
-kubectl apply -f ingress.yaml
+kubectl apply -f ingress.yml
+kubectl apply -f hpa.yml
 
 ✅ Verify Deployment
-
-Check ingress:
 kubectl get ingress
+kubectl get hpa
 
 Output:
 k8s-default-quizappi-xxxx.elb.amazonaws.com
@@ -185,6 +196,38 @@ Attached latest IAM policy to Load Balancer Controller role.
 
 Restarted controller:
 kubectl rollout restart deployment aws-load-balancer-controller -n kube-system
+
+
+
+🔥 PART 2 — IAM TROUBLESHOOTING CHEAT SHEET
+🧠 Step 1 — Confirm Account
+aws sts get-caller-identity
+
+🧠 Step 2 — Confirm Role Used By Pod
+kubectl get sa aws-load-balancer-controller -n kube-system -o yaml
+
+🧠 Step 3 — Confirm Role Exists
+aws iam get-role --role-name <role-name>
+
+🧠 Step 4 — Check Attached Policies
+aws iam list-attached-role-policies --role-name <role-name>
+
+🧠 Step 5 — Check Policy Contains Permission
+aws iam get-policy-version \
+  --policy-arn <policy-arn> \
+  --version-id v1
+
+  🧠 Step 6 — Check Controller Logs
+  kubectl logs -n kube-system deployment/aws-load-balancer-controller
+
+  🧠 Step 7 — Check OIDC Provider
+  aws iam list-open-id-connect-providers
+
+  If missing:
+  eksctl utils associate-iam-oidc-provider \
+  --region us-east-1 \
+  --cluster quiz-cluster \
+  --approve
 
 👨‍💻 Author
 

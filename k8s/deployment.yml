@@ -2,8 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: quiz-app
+  labels:
+    app: quiz-app
 spec:
   replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate    #zero downtime
+    rollingUpdate:      
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       app: quiz-app
@@ -13,7 +21,34 @@ spec:
         app: quiz-app
     spec:
       containers:
-        - name: quiz-app
+        - name: quiz-app-container
           image: 250760537264.dkr.ecr.us-east-1.amazonaws.com/quiz-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
+
+          resources:
+            requests:     #used by scheduler
+              cpu: "200m"
+              memory: "256Mi"
+            limits:            #prevent resource abuse
+              cpu: "500m"
+              memory: "512Mi"
+
+          livenessProbe:    #restart broken pod
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:  #only route traffic when ready
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
